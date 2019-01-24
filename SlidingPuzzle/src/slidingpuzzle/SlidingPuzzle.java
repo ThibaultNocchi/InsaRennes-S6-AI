@@ -1,5 +1,7 @@
 package slidingpuzzle;
 
+import java.util.ArrayList;
+
 public class SlidingPuzzle {
 
     int[][] puzzle;
@@ -17,6 +19,34 @@ public class SlidingPuzzle {
         }
         this.puzzle[this.sideSize-1][this.sideSize-1] = 0;
         this.emptyIndex = new int[]{this.sideSize-1, this.sideSize-1};
+    }
+
+    public SlidingPuzzle(int[][] puzzleCopy){
+
+        this.sideSize = puzzleCopy.length;
+        this.puzzle = new int[this.sideSize][this.sideSize];
+        this.emptyIndex = new int[2];
+        ArrayList<Integer> puzzleList = new ArrayList<>();
+
+        for(int i = 0; i < this.sideSize; ++i){
+
+            if(puzzleCopy[i].length != puzzleCopy.length) throw new IllegalArgumentException("Puzzle needs to be a square");
+            for(int j = 0; j < this.sideSize; ++j){
+                this.puzzle[i][j] = puzzleCopy[i][j];
+                if(this.puzzle[i][j] == 0){
+                    this.emptyIndex[0] = i;
+                    this.emptyIndex[1] = j;
+                }
+                puzzleList.add(this.puzzle[i][j]);
+            }
+
+        }
+
+        for(int i = 0; i < this.sideSize*this.sideSize; ++i) {
+            if (!puzzleList.contains(i))
+                throw new IllegalArgumentException("Number " + i + " is missing from the board.");
+        }
+
     }
 
     public int[][] getPuzzle(){
