@@ -9,8 +9,8 @@ public class OracleMaker {
     private LinkedList<SlidingPuzzle> toVisit;
     private HashSet<SlidingPuzzle> oracle;
 
-    public OracleMaker(int sideSize){
-        this.root = new SlidingPuzzle(sideSize);
+    public OracleMaker(SlidingPuzzle root){
+        this.root = root;
     }
 
     public void buildOracle(){
@@ -29,9 +29,8 @@ public class OracleMaker {
                 System.out.println(currentLevel);
             }
 
-            for(int[][] move : current.getLegalMoves()){
-                SlidingPuzzle newSp = new SlidingPuzzle(move, current.getLevel()+1);
-                if(!this.toVisit.contains(newSp) && !this.oracle.contains(newSp)) this.toVisit.add(newSp);
+            for(SlidingPuzzle move : current.getLegalMoves()){
+                if(!this.toVisit.contains(move) && !this.oracle.contains(move)) this.toVisit.add(move);
             }
 
             this.oracle.add(current);
