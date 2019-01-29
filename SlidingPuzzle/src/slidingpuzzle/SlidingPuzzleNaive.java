@@ -22,6 +22,10 @@ public class SlidingPuzzleNaive extends SlidingPuzzleAbstract<int[][]> implement
         this.puzzle = newPuzzle;
     }
 
+    public SlidingPuzzleNaive(String line){
+        super(line);
+    }
+
     @Override
     public void initPuzzle(){
         this.puzzle = this.puzzle = new int[this.sideSize][this.sideSize];

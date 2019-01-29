@@ -19,6 +19,8 @@ public interface SlidingPuzzle {
     public int getEmptyX();
     public int getEmptyY();
 
+    public void setLevel(int level);
+
     public List<SlidingPuzzle> getLegalMoves();
     public long getAbsolutePosition(int x, int y);
 

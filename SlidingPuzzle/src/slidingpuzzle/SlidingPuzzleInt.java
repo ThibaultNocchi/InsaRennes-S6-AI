@@ -16,6 +16,10 @@ public class SlidingPuzzleInt extends SlidingPuzzleAbstract<Long> implements Sli
         this.puzzle = slidingpuzzle.getPuzzle();
     }
 
+    public SlidingPuzzleInt(String line){
+        super(line);
+    }
+
     @Override
     public void initPuzzle(){
         this.puzzle = 0L;

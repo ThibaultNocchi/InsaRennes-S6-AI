@@ -40,6 +40,38 @@ public abstract class SlidingPuzzleAbstract<T> implements SlidingPuzzle {
         this.emptyY = slidingpuzzle.getEmptyY();
     }
 
+    public SlidingPuzzleAbstract(String line){
+
+        String[] values = line.split(" ");
+
+        this.level = Integer.parseInt(values[0]);
+        if(Math.sqrt(values.length-1) != Math.floor(Math.sqrt(values.length-1))) throw new IllegalArgumentException("Line doesn't match a square puzzle.");
+
+        this.sideSize = (int) Math.sqrt(values.length-1);
+        this.sideSize2 = this.sideSize*this.sideSize;
+
+        this.initPuzzle();
+        ArrayList<Integer> added = new ArrayList<>();
+
+        for(int i = 1; i < values.length; ++i){
+
+            int y = (i-1) % this.sideSize;
+            int x = (i - 1 - y)/this.sideSize;
+            int val = Integer.parseInt(values[i]);
+
+            if(val < 0 || val >= this.sideSize2 || added.contains(val)) throw new IllegalArgumentException("Line contains an illegal value.");
+
+            this.setValue(val, x, y);
+            added.add(val);
+            if(val == 0){
+                this.emptyX = x;
+                this.emptyY = y;
+            }
+
+        }
+
+    }
+
     @Override
     public SlidingPuzzle moveLeft(boolean edit){
         if(this.emptyY <= 0) throw new IllegalMoveException();
@@ -161,6 +193,11 @@ public abstract class SlidingPuzzleAbstract<T> implements SlidingPuzzle {
     }
 
     @Override
+    public void setLevel(int level){
+        this.level = level;
+    }
+
+    @Override
     public boolean isSolution() {
         for(int i = 0; i < this.sideSize; ++i){
             for(int j = 0; j < this.sideSize; ++j){
@@ -185,6 +222,7 @@ public abstract class SlidingPuzzleAbstract<T> implements SlidingPuzzle {
     @Override
     public String toString() {
         StringBuilder str = new StringBuilder();
+        str.append("Level ").append(this.level).append("\n");
         for(int i = 0; i < this.sideSize; ++i){
             for(int j = 0; j < this.sideSize; ++j){
                 str.append(this.getValue(i, j)).append(" ");
