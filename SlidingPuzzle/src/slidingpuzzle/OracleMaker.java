@@ -1,5 +1,7 @@
 package slidingpuzzle;
 
+import java.io.*;
+import java.nio.channels.Channels;
 import java.util.HashSet;
 import java.util.LinkedList;
 
@@ -36,6 +38,17 @@ public class OracleMaker {
             this.oracle.add(current);
 
         }
+
+    }
+
+    public void saveOracle(String path) throws IOException {
+
+        File file = new File(path);
+        PrintWriter pw = new PrintWriter(new FileWriter(file));
+        for(SlidingPuzzle sp : this.oracle){
+            pw.println(sp.toLine());
+        }
+        pw.close();
 
     }
 

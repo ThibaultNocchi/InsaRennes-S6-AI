@@ -24,4 +24,6 @@ public interface SlidingPuzzle {
 
     public boolean isSolution();
 
+    public String toLine();
+
 }

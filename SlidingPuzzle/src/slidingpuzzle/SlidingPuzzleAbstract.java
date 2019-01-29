@@ -171,6 +171,18 @@ public abstract class SlidingPuzzleAbstract<T> implements SlidingPuzzle {
     }
 
     @Override
+    public String toLine(){
+        StringBuilder str = new StringBuilder();
+        str.append(this.getLevel());
+        for(int i = 0; i < this.sideSize; ++i){
+            for(int j = 0; j < this.sideSize; ++j){
+                str.append(" ").append(this.getValue(i,j));
+            }
+        }
+        return str.toString();
+    }
+
+    @Override
     public String toString() {
         StringBuilder str = new StringBuilder();
         for(int i = 0; i < this.sideSize; ++i){
