@@ -67,7 +67,11 @@ public class OracleSolver {
      * @return Level of the puzzle.
      */
     public int getLevelOfPuzzle(SlidingPuzzle slidingPuzzle){
-        return this.oracle.get(slidingPuzzle);
+        try{
+            return this.oracle.get(slidingPuzzle);
+        }catch(NullPointerException e){
+            throw new IllegalArgumentException("Puzzle not in oracle.", e);
+        }
     }
 
 }
