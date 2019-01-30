@@ -3,21 +3,21 @@ package slidingpuzzle;
 import java.util.Arrays;
 
 /**
- * Naive implementation of puzzle as a 2D array.
+ * Implementation of puzzle as a 2D array.
  */
-public class SlidingPuzzleNaive extends SlidingPuzzleAbstract<int[][]> implements SlidingPuzzle {
+public class SlidingPuzzle2DArray extends SlidingPuzzleAbstract<int[][]> implements SlidingPuzzle {
 
     /**
      * @see SlidingPuzzleAbstract#SlidingPuzzleAbstract(int)
      */
-    public SlidingPuzzleNaive(int sideSize){
+    public SlidingPuzzle2DArray(int sideSize){
         super(sideSize);
     }
 
     /**
      * @see SlidingPuzzleAbstract#SlidingPuzzleAbstract(SlidingPuzzle)
      */
-    public SlidingPuzzleNaive(SlidingPuzzleNaive slidingpuzzle){
+    public SlidingPuzzle2DArray(SlidingPuzzle2DArray slidingpuzzle){
         super(slidingpuzzle);
         this.initPuzzle();
 
@@ -32,7 +32,7 @@ public class SlidingPuzzleNaive extends SlidingPuzzleAbstract<int[][]> implement
     /**
      * @see SlidingPuzzleAbstract#SlidingPuzzleAbstract(String)
      */
-    public SlidingPuzzleNaive(String line){
+    public SlidingPuzzle2DArray(String line){
         super(line);
     }
 
@@ -53,15 +53,15 @@ public class SlidingPuzzleNaive extends SlidingPuzzleAbstract<int[][]> implement
     }
 
     @Override
-    public SlidingPuzzleNaive clone(){
-        return new SlidingPuzzleNaive(this);
+    public SlidingPuzzle2DArray clone(){
+        return new SlidingPuzzle2DArray(this);
     }
 
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        SlidingPuzzleNaive that = (SlidingPuzzleNaive) o;
+        SlidingPuzzle2DArray that = (SlidingPuzzle2DArray) o;
         return Arrays.deepEquals(puzzle, that.puzzle);
     }
 

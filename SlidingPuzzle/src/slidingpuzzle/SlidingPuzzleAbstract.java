@@ -291,7 +291,7 @@ public abstract class SlidingPuzzleAbstract<T> implements SlidingPuzzle {
     public abstract SlidingPuzzle clone();
 
     /**
-     * Checks if the two SlidingPuzzleNaive contain the same puzzle, and only puzzle.
+     * Checks if the two SlidingPuzzle2DArray contain the same puzzle, and only puzzle.
      * The level isn't taken into account.
      * @param o Object to compare to.
      * @return Whether the two are equals.
