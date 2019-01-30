@@ -113,9 +113,6 @@ public abstract class SlidingPuzzleAbstract<T> implements SlidingPuzzle {
 
     }
 
-    /**
-     * @see SlidingPuzzle#moveLeft(boolean)
-     */
     @Override
     public SlidingPuzzle moveLeft(boolean edit){
         if(this.emptyY <= 0) throw new IllegalMoveException();
@@ -230,6 +227,13 @@ public abstract class SlidingPuzzleAbstract<T> implements SlidingPuzzle {
         return this.puzzle;
     }
 
+    /**
+     * @see SlidingPuzzle#setValue(int, int, int)
+     * This method needs to be called by inherited classes, it only checks the legality of the value and the position.
+     * @param v Value to put in the cell.
+     * @param x Line of the cell.
+     * @param y Row of the cell.
+     */
     @Override
     public void setValue(int v, int x, int y){
         if(x >= this.sideSize || y >= this.sideSize || x < 0 || y < 0) throw new IllegalArgumentException("Index out of boundaries.");
