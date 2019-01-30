@@ -1,21 +1,32 @@
 package slidingpuzzle;
 
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Objects;
 
+/**
+ * Implementation of puzzle as a long.
+ * Side size is limited to 4 included, as from 5, the puzzle can't be stored on a long.
+ */
 public class SlidingPuzzleInt extends SlidingPuzzleAbstract<Long> implements SlidingPuzzle {
 
+    /**
+     * @see SlidingPuzzleAbstract#SlidingPuzzleAbstract(int)
+     */
     public SlidingPuzzleInt(int sideSize){
         super(sideSize);
         if(sideSize > 4) throw new IllegalArgumentException("Side size needs to be max 4.");
     }
 
+    /**
+     * @see SlidingPuzzleAbstract#SlidingPuzzleAbstract(SlidingPuzzle)
+     */
     public SlidingPuzzleInt(SlidingPuzzleInt slidingpuzzle){
         super(slidingpuzzle);
         this.puzzle = slidingpuzzle.getPuzzle();
     }
 
+    /**
+     * @see SlidingPuzzleAbstract#SlidingPuzzleAbstract(String)
+     */
     public SlidingPuzzleInt(String line){
         super(line);
     }
