@@ -3,35 +3,72 @@ package slidingpuzzle;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * Abstracted implementation of a SlidingPuzzle.
+ * This allows us to abstract the way we store the puzzle (like a Long or a 2D Array for example).
+ * @param <T> Type used to store the puzzle.
+ */
 public abstract class SlidingPuzzleAbstract<T> implements SlidingPuzzle {
 
+    /**
+     * Puzzle of the object.
+     */
     protected T puzzle;
+
+    /**
+     * Side size of the object.
+     */
     protected int sideSize;
+
+    /**
+     * Squared side size, used to get the maximum value allowed in the puzzle.
+     */
     protected int sideSize2;
+
+    /**
+     * Line of the empty cell.
+     */
     protected int emptyX;
+
+    /**
+     * Row of the empty cell.
+     */
     protected int emptyY;
+
+    /**
+     * Level of the current puzzle.
+     * Mainly used to know number of moves from a root.
+     */
     protected int level;
 
+    /**
+     * Generates a puzzle which is the solution with a given side size.
+     * @param sideSize Side size of the puzzle generated.
+     */
     public SlidingPuzzleAbstract(int sideSize){
 
         if(sideSize <= 0) throw new IllegalArgumentException("Side size needs to be at least 1.");
         this.sideSize = sideSize;
         this.sideSize2 = this.sideSize*this.sideSize;
         this.level = 0;
-        this.emptyX = this.sideSize-1;
+        this.emptyX = this.sideSize-1;  // Empty value (0) will be in the last cell of the array.
         this.emptyY = this.sideSize-1;
 
         this.initPuzzle();
 
         for(int i = 0; i < this.sideSize; ++i){
             for(int j = 0; j < this.sideSize; ++j){
-                if(i == this.sideSize-1 && j == this.sideSize-1) this.setValue(0, i, j);
-                else this.setValue(i*this.sideSize+j+1, i, j);
+                if(i == this.sideSize-1 && j == this.sideSize-1) this.setValue(0, i, j);    // If it is the last cell, we put the empty value.
+                else this.setValue(i*this.sideSize+j+1, i, j);  // Else we just put the necessary value in this cell for the puzzle to be the solution.
             }
         }
 
     }
 
+    /**
+     * Creates a new SlidingPuzzle from another SlidingPuzzle.
+     * @param slidingpuzzle SlidingPuzzle to copy into the new.
+     */
     public  SlidingPuzzleAbstract(SlidingPuzzle slidingpuzzle){
         this.sideSize = slidingpuzzle.getSideSize();
         this.sideSize2 = this.sideSize*this.sideSize;
@@ -40,6 +77,10 @@ public abstract class SlidingPuzzleAbstract<T> implements SlidingPuzzle {
         this.emptyY = slidingpuzzle.getEmptyY();
     }
 
+    /**
+     * Imports a puzzle from a given string line which has the level and puzzle values.
+     * @param line Line to parse.
+     */
     public SlidingPuzzleAbstract(String line){
 
         String[] values = line.split(" ");
@@ -72,6 +113,9 @@ public abstract class SlidingPuzzleAbstract<T> implements SlidingPuzzle {
 
     }
 
+    /**
+     * @see SlidingPuzzle#moveLeft(boolean)
+     */
     @Override
     public SlidingPuzzle moveLeft(boolean edit){
         if(this.emptyY <= 0) throw new IllegalMoveException();
@@ -219,6 +263,10 @@ public abstract class SlidingPuzzleAbstract<T> implements SlidingPuzzle {
         return str.toString();
     }
 
+    /**
+     * Returns a displayable puzzle with line breaks.
+     * @return Puzzle to display.
+     */
     @Override
     public String toString() {
         StringBuilder str = new StringBuilder();
@@ -232,6 +280,10 @@ public abstract class SlidingPuzzleAbstract<T> implements SlidingPuzzle {
         return str.toString();
     }
 
+    /**
+     * Returns a cloned SlidingPuzzle.
+     * @return Cloned SlidingPuzzle.
+     */
     public abstract SlidingPuzzle clone();
 
 }
