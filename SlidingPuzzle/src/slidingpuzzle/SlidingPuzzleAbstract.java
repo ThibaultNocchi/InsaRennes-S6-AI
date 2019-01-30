@@ -228,7 +228,7 @@ public abstract class SlidingPuzzleAbstract<T> implements SlidingPuzzle {
     }
 
     /**
-     * @see SlidingPuzzle#setValue(int, int, int)
+     * {@inheritDoc}
      * This method needs to be called by inherited classes, it only checks the legality of the value and the position.
      * @param v Value to put in the cell.
      * @param x Line of the cell.
