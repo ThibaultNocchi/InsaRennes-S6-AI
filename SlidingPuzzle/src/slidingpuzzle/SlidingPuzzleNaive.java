@@ -1,15 +1,22 @@
 package slidingpuzzle;
 
-import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.List;
 
+/**
+ * Naive implementation of puzzle as a 2D array.
+ */
 public class SlidingPuzzleNaive extends SlidingPuzzleAbstract<int[][]> implements SlidingPuzzle {
 
+    /**
+     * @see SlidingPuzzleAbstract#SlidingPuzzleAbstract(int)
+     */
     public SlidingPuzzleNaive(int sideSize){
         super(sideSize);
     }
 
+    /**
+     * @see SlidingPuzzleAbstract#SlidingPuzzleAbstract(SlidingPuzzle)
+     */
     public SlidingPuzzleNaive(SlidingPuzzleNaive slidingpuzzle){
         super(slidingpuzzle);
         this.initPuzzle();
@@ -22,13 +29,16 @@ public class SlidingPuzzleNaive extends SlidingPuzzleAbstract<int[][]> implement
         this.puzzle = newPuzzle;
     }
 
+    /**
+     * @see SlidingPuzzleAbstract#SlidingPuzzleAbstract(String)
+     */
     public SlidingPuzzleNaive(String line){
         super(line);
     }
 
     @Override
     public void initPuzzle(){
-        this.puzzle = this.puzzle = new int[this.sideSize][this.sideSize];
+        this.puzzle = new int[this.sideSize][this.sideSize];
     }
 
     @Override
@@ -44,8 +54,7 @@ public class SlidingPuzzleNaive extends SlidingPuzzleAbstract<int[][]> implement
 
     @Override
     public SlidingPuzzleNaive clone(){
-        SlidingPuzzleNaive sp = new SlidingPuzzleNaive(this);
-        return sp;
+        return new SlidingPuzzleNaive(this);
     }
 
     @Override
