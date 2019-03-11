@@ -35,4 +35,4 @@ ArrayList<SlidingPuzzle> solutions = os.solve(spToSolve); // List of puzzles to 
 ```
 
 ## Documentation
-You can find the Javadoc [here](https://tiwenty.github.io/InsaRennes-S6-AI/SlidingPuzzleOracle/doc/).
+You can find the Javadoc [here](https://thibaultnocchi.github.io/InsaRennes-S6-AI/SlidingPuzzleOracle/doc/).
