@@ -420,7 +420,7 @@ if __name__ == "__main__":
     tree = SolvingTree(sp) # Creating the tree with our SlidingPuzzle as root.
 
     tree.solve() # Solves the problem.
-    solution = tree.getSolutionPath() # Retrives the solution.
+    solution = tree.getSolutionPath() # Retrieves the solution.
 
     for puzzleStep in solution: # Prints the solution.
         print(puzzleStep)
