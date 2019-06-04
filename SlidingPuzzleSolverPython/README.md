@@ -9,7 +9,7 @@ You can use this script with Python3. You can print the help with `python3 Slidi
 The only way to interact with it in the CLI is to give it the values of a puzzle, from top left to bottom right. A 0 value represents the empty space, and integers from 1 to n the solved position of the puzzle, top left to bottom right.
 
 Ex.: `python3 SlidingPuzzle.py 7 6 4 2 8 1 3 5 0` will solve this puzzle:  
-|  |  |  |
+| . | . | . |
 |:-:|:-:|:-:|
 | 7 | 6 | 4 |
 | 2 | 8 | 1 |
