@@ -1,6 +1,8 @@
 import copy
 import heapq
 import typing
+import argparse
+import math
 
 
 class SlidingPuzzle:
@@ -140,7 +142,7 @@ class SlidingPuzzle:
 
 class PuzzleNode:
 
-    def __init__(self, slidingPuzzle: SlidingPuzzle, parent: PuzzleNode = None):
+    def __init__(self, slidingPuzzle: SlidingPuzzle, parent: "PuzzleNode" = None):
         self.__slidingPuzzle: SlidingPuzzle = slidingPuzzle
         self.__parent: PuzzleNode = parent
         if(self.__parent is not None):
@@ -249,13 +251,32 @@ class SolvingTree:
         return solution
 
 
-sp = SlidingPuzzle(puzzle=[[1, 2, 7], [6, 5, 8], [4, 3, 0]])
-tree = SolvingTree(sp)
+if __name__ == "__main__":
 
-tree.solve()
-solution = tree.getSolutionPath()
+    parser = argparse.ArgumentParser()
+    parser.add_argument("puzzle", help = "Specify each number of the puzzle to solve, from top left to bottom right (0 for empty space). Ex.:\n" +
+        "'python3 " + __file__ + " 1 2 7 6 5 8 4 3 0' to solve a 3x3 puzzle with lines being (1 2 7), (6 5 8) and (4 3 0) from top to bottom.", nargs = "+", type = int)
+    args = parser.parse_args()
+    
+    if(math.floor(math.sqrt(len(args.puzzle)))**2 != len(args.puzzle)):
+        print("Given puzzle isn't a square. Call 'python3 " + __file__ + " -h' to see the correct format.")
 
-for puzzle in solution:
-    print(puzzle)
+    side:int = math.floor(math.sqrt(len(args.puzzle)))
+    
+    puzzle = []
+    for i in range(side):
+        newLine = []
+        for j in range(side):
+            newLine.append(args.puzzle[i*side + j])
+        puzzle.append(newLine)
+    
+    sp = SlidingPuzzle(puzzle=puzzle)
+    tree = SolvingTree(sp)
 
-print("Number of moves: " + str(len(solution) - 1))
+    tree.solve()
+    solution = tree.getSolutionPath()
+
+    for puzzleStep in solution:
+        print(puzzleStep)
+
+    print("Number of moves required to solve: " + str(len(solution) - 1))
